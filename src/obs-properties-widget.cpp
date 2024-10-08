@@ -194,6 +194,8 @@ struct PropertyWidget {
 						    data);
 				}
 			}
+			default: {
+			}
 			}
 		}
 	}
@@ -242,6 +244,8 @@ struct PropertyWidget {
 				cb->setCurrentIndex(findRes);
 			}
 			break;
+		}
+		default: {
 		}
 		}
 	}
@@ -309,6 +313,8 @@ struct PropertyWidget {
 							.c_str());
 			}
 			break;
+		}
+		default: {
 		}
 		}
 	}
