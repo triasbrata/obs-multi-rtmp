@@ -34,9 +34,16 @@ if(ENABLE_QT)
                AUTOUIC ON
                AUTORCC ON)
 endif()
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-error=shadow")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-error=sign-compare")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-error=deprecated-declarations")
+
+if (MSVC)
+    # For MSVC (Microsoft Visual C++)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W3 /wd4996 /wd4244")
+else()
+    # For GCC/Clang (Linux/Unix or MinGW on Windows)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-error=shadow")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-error=sign-compare")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-error=deprecated-declarations")
+endif()
 
 
 target_sources(${CMAKE_PROJECT_NAME} PRIVATE
