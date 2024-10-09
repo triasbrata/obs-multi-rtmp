@@ -31,8 +31,8 @@
 
 #define TAG "[obs-multi-rtmp] "
 
-inline std::string tostdu8(const QString& qs)
+inline std::string tostdu8(const QString &qs)
 {
-    auto b = qs.toUtf8();
-    return std::string(b.begin(), b.end());
+	auto b = qs.toUtf8();
+	return std::string(b.begin(), b.end());
 }

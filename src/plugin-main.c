@@ -36,7 +36,7 @@ void obs_module_unload(void)
 }
 
 
-void example_request_cb(obs_data_t *request_data, obs_data_t *response_data, void *priv_data);
+void add_new_target_cb(obs_data_t *request_data, obs_data_t *response_data, void *priv_data);
 void obs_module_post_load(void)
 {
 	auto vendor = obs_websocket_register_vendor("api_example_plugin");
@@ -45,7 +45,7 @@ void obs_module_post_load(void)
 		return;
 	}
 
-	if (!obs_websocket_vendor_register_request(vendor, "example_request", example_request_cb, NULL))
+	if (!obs_websocket_vendor_register_request(vendor, "example_request", add_new_target_cb, NULL))
 		blog(LOG_ERROR, "Failed to register `example_request` request with obs-websocket.");
 
 	auto api_version = obs_websocket_get_api_version();
@@ -66,7 +66,7 @@ void obs_module_post_load(void)
 	     response->status_code, response->comment, response->response_data);
 	obs_websocket_request_response_free(response);
 }
-void example_request_cb(obs_data_t *request_data, obs_data_t *response_data, void *priv_data)
+void add_new_target_cb(obs_data_t *request_data, obs_data_t *response_data, void *priv_data)
 {
 	if (obs_data_has_user_value(request_data, "ping"))
 		obs_data_set_bool(response_data, "pong", true);
